@@ -1,0 +1,60 @@
+micronaut:
+  application:
+    name: test
+  server:
+    cors:
+      enabled: true
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+  security:
+    enabled: true 
+    endpoints:
+      login:
+        enabled: true 
+      oauth:
+        enabled: true 
+      info:
+        enabled: true
+        sensitive: false      
+    token:
+      basic-auth:
+        enabled: true
+      jwt:
+        enabled: true 
+        signatures:
+          secret:
+            generator: 
+              secret: pleaseChangeThisSecretForANewOne
+              jwsAlgorithm: HS256
+    ldap:
+      default: 
+        enabled: true
+        context:
+          server: 'ldap://ldap.forumsys.com:389'  
+          managerDn: 'cn=read-only-admin,dc=example,dc=com'  
+          managerPassword: 'password'  
+        search:
+          base: "dc=example,dc=com"  
+        groups:
+          enabled: true  
+          base: "dc=example,dc=com" 
+endpoints:
+  info:
+    enabled: true
+    sensitive: false      
+  beans:
+    enabled: true
+    sensitive: false
+  routes:
+    enabled: true
+    sensitive: false
+  loggers:
+    enabled: true
+    sensitive: false
+  env:
+    enabled: true
+    sensitive: false
+    
